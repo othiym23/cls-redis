@@ -1,6 +1,6 @@
 {
   "name": "cls-redis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make continuation-local storage play nice with node-redis.",
   "main": "shim.js",
   "scripts": {
