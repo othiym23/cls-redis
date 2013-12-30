@@ -26,7 +26,7 @@ test("CLS + redis without shim = sadness", function (t) {
 
       var parsed = JSON.parse(reply);
       t.equal(parsed.id, key, "retrieved correct value");
-      t.equal(ns.get('id'), -1, "inner context value isn't available");
+      t.notOk(ns.get('id'), "inner context value isn't available");
 
       done(parsed);
     });
@@ -37,22 +37,21 @@ test("CLS + redis without shim = sadness", function (t) {
       ns.set('id', 1);
 
       fetch(ns.get('id'), function () {
-        t.equal(ns.get('id'), -1, "inner context value is lost at finish");
+        t.notOk(ns.get('id'), "inner context value is lost at finish");
       });
     });
   }
 
-  // set a sentinel value
-  ns.set('id', -1);
+  ns.run(function () {
+    var data = JSON.stringify({id : 1});
+    client.set(1, data, function next(error) {
+      if (error) {
+        t.fail(error);
+        return t.end();
+      }
 
-  var data = JSON.stringify({id : 1});
-  client.set(1, data, function next(error) {
-    if (error) {
-      t.fail(error);
-      return t.end();
-    }
-
-    process.nextTick(test);
+      process.nextTick(test);
+    });
   });
 });
 
@@ -99,16 +98,15 @@ test("CLS + redis with shim = satisfaction", function (t) {
     });
   }
 
-  // set a sentinel value
-  ns.set('id', -1);
+  ns.run(function () {
+    var data = JSON.stringify({id : 1});
+    client.set(1, data, function next(error) {
+      if (error) {
+        t.fail(error);
+        return t.end();
+      }
 
-  var data = JSON.stringify({id : 1});
-  client.set(1, data, function next(error) {
-    if (error) {
-      t.fail(error);
-      return t.end();
-    }
-
-    process.nextTick(test);
+      process.nextTick(test);
+    });
   });
 });

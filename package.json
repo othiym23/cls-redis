@@ -25,13 +25,13 @@
     "url": "https://github.com/othiym23/cls-redis/issues"
   },
   "peerDependencies": {
-    "continuation-local-storage": "~2",
-    "redis": "~0.9"
+    "continuation-local-storage": "~3",
+    "redis": "~0.10"
   },
   "devDependencies": {
     "tap": "~0.4.4",
-    "redis": "~0.9",
-    "continuation-local-storage": "~2"
+    "redis": "~0.10",
+    "continuation-local-storage": "~3"
   },
   "dependencies": {
     "shimmer": "~1"
