@@ -26,11 +26,11 @@
   },
   "peerDependencies": {
     "continuation-local-storage": "~3",
-    "redis": "~0.10"
+    "redis": ">=0.10 <1"
   },
   "devDependencies": {
     "tap": "~0.4.4",
-    "redis": "~0.10",
+    "redis": ">=0.10 <1",
     "continuation-local-storage": "~3"
   },
   "dependencies": {
